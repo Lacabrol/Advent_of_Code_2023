@@ -31,7 +31,7 @@ int main()
 
                 // If the first digit has not been set yet
                 if(first == -1) {
-                    first = last * 10; // This logic is flawed; sets first incorrectly
+                    first = last * 10; // Multiply last by 10 to get the first digit
                 }
             }  
         }

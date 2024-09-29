@@ -21,7 +21,7 @@ if (__name__ == '__main__'):
                 
                 # If the first digit has not been found yet
                 if first == -1:
-                    first = last * 10  # Set first to ten times the last digit found
+                    first = last * 10  # Multiply last by 10 to get the first digit
 
         # Add the first and last digits (if found) to the final sum
         final_sum += first + last  # Add to the accumulated sum
