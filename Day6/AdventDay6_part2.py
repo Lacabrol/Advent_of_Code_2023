@@ -5,12 +5,8 @@ if __name__ == '__main__':
         lines = f.readlines()
 
     # Assuming the first line contains time values and the second line contains distance values
-    times = lines[0].split()
-    distances = lines[1].split()
-
-    # Remove first element from both lists 
-    times.pop(0)
-    distances.pop(0)
+    times = lines[0].split()[1:] 
+    distances = lines[1].split()[1:] 
 
     # Concatenate the times and distances into single strings
     time = ''.join(times)
