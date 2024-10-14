@@ -2,8 +2,8 @@ from collections import Counter
 
 def convert_cards_to_values(card_sequence):
     card_value_map = {
-        '2': 0, '3': 1, '4': 2, '5': 3, '6': 4,
-        '7': 5, '8': 6, '9': 7, 'T': 8, 'J': 9,
+        'J': 0, '2': 1, '3': 2, '4': 3, '5': 4, 
+        '6': 5, '7': 6, '8': 7, '9': 8, 'T': 9, 
         'Q': 10, 'K': 11, 'A': 12
     }
     return [card_value_map[card] for card in card_sequence]
@@ -29,8 +29,11 @@ if __name__ == '__main__':
         card_sequence = words[0]
         bid_value = int(words[1])
 
-        # Count the frequency of each card
-        card_frequencies = Counter(card_sequence).values()
+        # Count the frequency of each card and replace J with the most frequent card
+        if card_sequence.count('J') != len(card_sequence):
+            card_frequencies = Counter(card_sequence.replace('J', max(card_sequence.replace('J', ''),key=card_sequence.count))).values()
+        else:
+            card_frequencies = Counter(card_sequence).values()
 
         # Categorize the hand
         if len(card_frequencies) == 5:
@@ -40,9 +43,10 @@ if __name__ == '__main__':
         elif len(card_frequencies) == 4:
             hands_by_category[1].append([card_sequence, bid_value])  # One pair
         elif len(card_frequencies) == 2:
-            if max(card_frequencies) == 4:
+            if 4 in card_frequencies:
                 hands_by_category[5].append([card_sequence, bid_value])  # Four of a kind
             else:
+                print(card_sequence, card_frequencies)
                 hands_by_category[4].append([card_sequence, bid_value])  # Full house
         elif len(card_frequencies) == 3:
             if 3 in card_frequencies:
@@ -59,4 +63,5 @@ if __name__ == '__main__':
     for idx, hand in enumerate(final_sorted_hands):
         total_sum += hand[1] * (idx + 1)
 
+    # print(final_sorted_hands)
     print(total_sum)
