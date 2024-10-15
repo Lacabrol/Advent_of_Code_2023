@@ -46,7 +46,6 @@ if __name__ == '__main__':
             if 4 in card_frequencies:
                 hands_by_category[5].append([card_sequence, bid_value])  # Four of a kind
             else:
-                print(card_sequence, card_frequencies)
                 hands_by_category[4].append([card_sequence, bid_value])  # Full house
         elif len(card_frequencies) == 3:
             if 3 in card_frequencies:
@@ -63,5 +62,4 @@ if __name__ == '__main__':
     for idx, hand in enumerate(final_sorted_hands):
         total_sum += hand[1] * (idx + 1)
 
-    # print(final_sorted_hands)
     print(total_sum)
